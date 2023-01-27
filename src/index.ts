@@ -11,4 +11,21 @@ readdirSync(handlersDir).forEach(handler => {
   require(`${handlersDir}/${handler}`)(client)
 })
 
-client.login(process.env.DISCORD_TOKEN)
+client.login(process.env.DISCORD_TOKEN);
+
+
+
+// Run an express server for a webpage - unneeded in most cases
+const express = require('express');
+const app = express();
+
+const port = process.env.PORT || 8000;
+
+// @ts-ignore
+app.get('*', (req, res) => {
+  res.send('Issue Reporter Bot');
+});
+
+app.listen(port, function () {
+  console.log("API Server is running on "+ port +" port");
+});
